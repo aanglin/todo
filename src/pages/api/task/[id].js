@@ -11,7 +11,7 @@ await dbConnect();
 // UPDATE task
 if (method === 'PUT') {
     try {
-        const result = await Task.findByIdAndUpdate(id,{$set;req.body},{new:true});
+        const result = await Task.findByIdAndUpdate(id,{$set:req.body},{new:true});
         res.status(200).json({data:result, message: 'Task updated successfully'});
     }catch (err) {
         res.status(500).json({message: "Internal Server Error"});
