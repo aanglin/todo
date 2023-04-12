@@ -3,7 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import Banner from "../../public/assets/Banner.jpg";
 
-const url = "https://todo-drab-seven-41.vercel.app";
+const url = "https://todo-drab-seven-41.vercel.app/";
 
 export default function Home() {
   const [tasks, setTasks] = useState(null);
@@ -44,7 +44,7 @@ export default function Home() {
         setTask({ task: "" });
       } else {
         // add new task
-        const { data } = await axios.post(url, task: task.task);
+        const { data } = await axios.post(url,task);
         setTasks((prev) => [...prev, data.data]);
         setTask({ task: "" });
       }
