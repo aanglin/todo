@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const DB_URL = process.env.MONGODB_URL;
+const DB_URL = process.env.NEXT_PUBLIC_MONGODB_URL;
 
 if(!DB_URL) {
     throw new Error("DB_URL must be specified");
