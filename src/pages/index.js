@@ -84,7 +84,7 @@ export default function Home(props) {
       </div>
       <div
         id="form-container"
-        className="absolute flex flex-col justify-center items-center w-full max-w-md top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
+        className="absolute flex flex-col justify-center items-center w-full max-w-sm md:max-w-3xl top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
       >
         <h1 className="text-white text-5xl p-8">ToDo List</h1>
         <div className="w-fit p-5 bg-transparent border-blue-400 border-2 shadow-blue-400 shadow-2xl pt-5 rounded-xl text-xl">
