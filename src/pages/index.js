@@ -3,7 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import Banner from "../../public/assets/Banner.jpg";
 
-const url = "https://todo-drab-seven-41.vercel.app/";
+const url = "https://todo-drab-seven-41.vercel.app";
 
 export default function Home() {
   const [tasks, setTasks] = useState(null);
