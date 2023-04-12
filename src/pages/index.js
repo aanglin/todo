@@ -74,7 +74,7 @@ export default function Home(props) {
        id='form-container'
         className='absolute flex flex-col justify-center items-center w-full max-w-md top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'>
         <h1 className='text-white text-5xl p-8'>ToDo List</h1>
-        <div className='bg-transparent border-blue-400 border-2 shadow-blue-400 shadow-2xl p-9 rounded-xl w-full text-2xl'>
+        <div className=' bg-transparent border-blue-400 border-2 shadow-blue-400 shadow-2xl p-9 rounded-xl  text-2xl'>
         <div className='md:p-3'>
           <form
           onSubmit={addTask}
@@ -96,17 +96,22 @@ export default function Home(props) {
         </div>
         <div>
           {tasks.map((task) => (
-            <div key={task._id}>
+            <div
+             key={task._id}
+             className='flex items-center p-2 '
+             >
               <input
                type="checkbox"
                checked={task.completed}
                onChange={() => updateTask(task._id)}
                 />
-                <p className={task.completed}>
+                <p className={
+                  task.completed?
+                  'px-2 pr-[10rem] grow line-through' : 'px-2 pr-[10rem] grow'}>
                   {task.task}
                 </p>
-                <button onClick={() => editTask(task._id)}>&#9998;</button>
-                <button onClick={() => deleteTask(task._id)}>&#10006;</button>
+                <button className='pr-2' onClick={() => editTask(task._id)}>&#9998;</button>
+                <button className='pb-1 pl-1' onClick={() => deleteTask(task._id)}>&times;</button>
             </div>
           ))}
           {tasks.length === 0 && <h2 className='flex justify-center items-center'>No Tasks</h2>}
