@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Banner from "../../public/assets/Banner.jpg";
 
 const url = "https://todo-drab-seven-41.vercel.app/";
 
-export default function Home(props) {
-  console.log(props);
-  const [tasks, setTasks] = useState(props.tasks);
+export default function Home() {
+  const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState({ task: "" });
   const [editingTaskId, setEditingTaskId] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get(url);
+      setTasks(data.data);
+    };
+    fetchData();
+  }, []);
 
   const handleChange = ({ target: { value } }) => {
     setTask({ task: value });
@@ -143,11 +150,11 @@ export default function Home(props) {
   );
 }
 
-export const getServerSideProps = async () => {
-  const { data } = await axios.get(url);
-  return {
-    props: {
-      tasks: data.data,
-    },
-  };
-};
+// export const getServerSideProps = async () => {
+//   const { data } = await axios.get(url);
+//   return {
+//     props: {
+//       tasks: data.data,
+//     },
+//   };
+// };
