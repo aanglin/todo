@@ -44,7 +44,7 @@ export default function Home() {
         setTask({ task: "" });
       } else {
         // add new task
-        const { data } = await axios.post(url, task);
+        const { data } = await axios.post(url, task: task.task);
         setTasks((prev) => [...prev, data.data]);
         setTask({ task: "" });
       }
