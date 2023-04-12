@@ -3,7 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import Banner from "../../public/assets/Banner.jpg";
 
-const url = "https://todo-drab-seven-41.vercel.app/";
+const url = "/api/task";
 
 export default function Home() {
   const [tasks, setTasks] = useState(null);
@@ -108,7 +108,7 @@ export default function Home() {
                 type="submit"
                 className="p-1 pr-2 border border-l-0 border-blue-400 appearance-none focus:outline-none"
               >
-                {editingTaskId ? "Update" : "Add"}
+                {editingTaskId ? "Fix" : "Add"}
               </button>
             </form>
           </div>
