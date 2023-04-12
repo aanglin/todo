@@ -6,7 +6,7 @@ import Banner from "../../public/assets/Banner.jpg";
 const url = "https://todo-drab-seven-41.vercel.app/";
 
 export default function Home() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(null);
   const [task, setTask] = useState({ task: "" });
   const [editingTaskId, setEditingTaskId] = useState(null);
 
@@ -113,37 +113,43 @@ export default function Home() {
             </form>
           </div>
           <div>
-            {tasks.map((task) => (
-              <div key={task._id} className="flex items-center p-2 ">
-                <input
-                  type="checkbox"
-                  checked={task.completed}
-                  onChange={() => toggleCompletion(task._id)}
-                />
-                <p
-                  className={
-                    task.completed
-                      ? "px-2 pr-[10rem] grow line-through"
-                      : "px-2 pr-[10rem] grow"
-                  }
-                >
-                  {task.task}
-                </p>
-                <button className="pr-2" onClick={() => editTask(task._id)}>
-                  &#9998;
-                </button>
-                <button
-                  className="pb-1 pl-1"
-                  onClick={() => deleteTask(task._id)}
-                >
-                  &times;
-                </button>
-              </div>
-            ))}
-            {tasks.length === 0 && (
-              <h2 className="flex justify-center items-center">No Tasks</h2>
-            )}
-          </div>
+      {tasks ? (
+        tasks.length > 0 ? (
+          tasks.map((task) => (
+            //... JSX for rendering individual tasks
+            <div key={task._id} className="flex items-center p-2 ">
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleCompletion(task._id)}
+              />
+              <p
+                className={
+                  task.completed
+                    ? "px-2 pr-[10rem] grow line-through"
+                    : "px-2 pr-[10rem] grow"
+                }
+              >
+                {task.task}
+              </p>
+              <button className="pr-2" onClick={() => editTask(task._id)}>
+                &#9998;
+              </button>
+              <button
+                className="pb-1 pl-1"
+                onClick={() => deleteTask(task._id)}
+              >
+                &times;
+              </button>
+            </div>
+          ))
+        ) : (
+          <h2 className="flex justify-center items-center">No Tasks</h2>
+        )
+      ) : (
+        <h2>No tasks</h2>
+      )}
+    </div>
         </div>
       </div>
     </div>
