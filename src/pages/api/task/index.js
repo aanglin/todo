@@ -20,8 +20,9 @@ if (method === 'POST') {
 
 // Get all tasks
 if (method === 'GET') {
+    const userId = req.query.userId;
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find({userId});
         res.status(200).json({data:tasks});
     }catch (err) {
         res.status(500).json({message: "Internal Server Error"});

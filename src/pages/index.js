@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Banner from "../../public/assets/Banner.jpg";
+import { getUserId } from "../utils/utils"; // Import the getUserId function
 
 const url = "/api/task";
 
@@ -10,13 +11,15 @@ export default function Home() {
   const [task, setTask] = useState({ task: "" });
   const [editingTaskId, setEditingTaskId] = useState(null);
 
+  const userId = getUserId(); // Get the userId
+
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get(url);
+      const { data } = await axios.get(url,{ params: { userId } });
       setTasks(data.data);
     };
     fetchData();
-  }, []);
+  }, [userId]);
 
   const handleChange = ({ target: { value } }) => {
     setTask({ task: value });
@@ -44,7 +47,7 @@ export default function Home() {
         setTask({ task: "" });
       } else {
         // add new task
-        const { data } = await axios.post(url,task);
+        const { data } = await axios.post(url,{ ...task, userId });
         setTasks((prev) => [...prev, data.data]);
         setTask({ task: "" });
       }
